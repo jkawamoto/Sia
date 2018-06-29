@@ -114,8 +114,8 @@ func (c *Contractor) PeriodSpending() modules.ContractorSpending {
 			// Calculate funds that are being withheld in contracts
 			spending.WithheldFunds = spending.WithheldFunds.Add(old.RenterFunds)
 			// Record the largest window size for worst case when reporting the spending
-			if host.WindowSize >= spending.ReleaseBlock {
-				spending.ReleaseBlock = host.WindowSize
+			if old.EndHeight+host.WindowSize+types.MaturityDelay >= spending.ReleaseBlock {
+				spending.ReleaseBlock = old.EndHeight + host.WindowSize + types.MaturityDelay
 			}
 			// Calculate Previous spending
 			spending.PreviousSpending = spending.PreviousSpending.Add(old.ContractFee).Add(old.TxnFee).

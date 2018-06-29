@@ -1572,8 +1572,8 @@ func checkContractVsReportedSpending(r *siatest.TestNode, WindowSize types.Block
 			// Calculated funds that are being withheld in contracts
 			spending.WithheldFunds = spending.WithheldFunds.Add(contract.RenterFunds)
 			// Record the largest window size for worst case when reporting the spending
-			if WindowSize >= spending.ReleaseBlock {
-				spending.ReleaseBlock = WindowSize
+			if contract.EndHeight+WindowSize+types.MaturityDelay >= spending.ReleaseBlock {
+				spending.ReleaseBlock = contract.EndHeight + WindowSize + types.MaturityDelay
 			}
 			// Calculate Previous spending
 			spending.PreviousSpending = spending.PreviousSpending.Add(contract.Fees).
