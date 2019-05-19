@@ -864,9 +864,9 @@ func (api *API) renterRenameHandler(w http.ResponseWriter, req *http.Request, ps
 
 // renterFileHandler handles GET requests to the /renter/file/:siapath API endpoint.
 func (api *API) renterFileHandlerGET(w http.ResponseWriter, req *http.Request, ps httprouter.Params) {
-	fmt.Println(ps.ByName("siapath"), ps)
+	fmt.Printf("%q\n", ps.ByName("siapath"))
 	siaPath, err := modules.NewSiaPath(ps.ByName("siapath"))
-	fmt.Println(siaPath, err)
+	//fmt.Printf("%q\n", siaPath)
 	if err != nil {
 		WriteError(w, Error{err.Error()}, http.StatusBadRequest)
 		return

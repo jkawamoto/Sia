@@ -307,6 +307,7 @@ func (sfs *SiaFileSet) open(siaPath modules.SiaPath) (*SiaFileSetEntry, error) {
 	entry, _, exists = sfs.siaPathToEntryAndUID(siaPath)
 	if !exists {
 		// Try and Load File from disk
+		fmt.Printf("%q\n", siaPath.SiaFileSysPath(sfs.staticSiaFileDir))
 		sf, err := LoadSiaFile(siaPath.SiaFileSysPath(sfs.staticSiaFileDir), sfs.wal)
 		if os.IsNotExist(err) {
 			return nil, ErrUnknownPath

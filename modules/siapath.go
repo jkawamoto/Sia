@@ -162,6 +162,9 @@ func (sp SiaPath) SiaDirMetadataSysPath(dir string) string {
 // SiaFileSysPath returns the system path needed to read the SiaFile from disk,
 // the input dir is the root siafile directory on disk
 func (sp SiaPath) SiaFileSysPath(dir string) string {
+
+	fmt.Printf("%q, %q", sp.Path, filepath.FromSlash(sp.Path))
+
 	return filepath.Join(dir, filepath.FromSlash(sp.Path)+SiaFileExtension)
 }
 
